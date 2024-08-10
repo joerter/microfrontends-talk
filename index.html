@@ -35,15 +35,352 @@
         </section>
         <section>
           <h1>September 14, 2016</h1>
-					<img src="/images/angular-logo.svg" />
+          <img src="/images/angular-logo.svg" />
           <aside class="notes">
             <ul>
               <li>This is like when a movie opens with a flashback</li>
               <li>
                 Raise your hand if you were developing software in September
-                2016
+                2016. Just for my own curiosity
+              </li>
+              <li>
+                Does anyone know a significant event that happened on this date?
+                Hint: it's in the front end dev world
               </li>
             </ul>
+          </aside>
+        </section>
+        <section>
+          <img src="/images/angularjs-logo.png" />
+        </section>
+        <section>
+          <img src="/images/angularjs-logo.png" />
+          <div
+            style="
+              font-family: Arial, sans-serif;
+              font-size: 48px;
+              font-weight: bold;
+              color: red;
+              border: 4px solid red;
+              display: inline-block;
+              padding: 10px 20px;
+              transform: rotate(-15deg);
+              letter-spacing: 5px;
+              text-shadow: 2px 2px 0 rgba(255, 0, 0, 0.3);
+              box-shadow:
+                0 0 0 3px red inset,
+                2px 2px 10px rgba(0, 0, 0, 0.3);
+              background: rgba(255, 255, 255, 0.9);
+            "
+          >
+            LEGACY
+          </div>
+          <aside class="notes">
+            <ul>
+              <li>
+                Your shiny, beautiful AngularJS app just became legacy software
+              </li>
+              <li>
+                AngularJS would continue to receive some updates but cease being
+                officially supported at the end of 2021
+              </li>
+              <li>
+                Again for my curiosity, raise your hand if you were supporting
+                or building an AngularJS app during this time.
+              </li>
+              <li>
+                It was confusing for sure. Anyone have any stories they'd like
+                to share? Any memories of working with AngularJS?
+              </li>
+              <li>
+                Where I was working at the time I had a sweet setup with
+                Browserify and Gulp to build my AngularJS app and I really
+                enjoyed it
+              </li>
+              <li>Anyone still using AngularJS today? Still supporting?</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h1>Migrating off of a legacy technology is hard.</h1>
+          <aside class="notes">
+            <ul>
+              <li>
+                This talk is specifically about a success story in migrating
+                from AngularJS to React using microfrontends
+              </li>
+              <li>
+                However, I hope that even if that isn't your specific situation,
+                you can glean some inspiration and ideas from this talk to apply
+                to your own work
+              </li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h1>The Problem</h1>
+          <ul>
+            <li>No new features, bug fixes, or security updates</li>
+            <li>Skill stagnation, missing out on career growth, frustration</li>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li>
+                When I joined Dina in 2022, our flagship app was in AngularJS
+              </li>
+              <li>
+                These problems should be obvious, but we'll go through them
+              </li>
+              <li>Can't take advantage of new browser features</li>
+              <li>Supporting libraries are usually abandoned</li>
+              <li>
+                Again, you can apply this to any technology stack, not just
+                AngularJS and front-end
+              </li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h1>UX is downstream of DX</h1>
+          <aside class="notes">
+            <ul>
+              <li>
+                What I mean by this is, if your development process sucks, the
+                quality of your product will suffer
+              </li>
+              <li>
+                The frustration, slow build times, hunting around for bugs in
+                abandoned libraries all takes mental power away from innovation,
+                and really caring about the quality of the product, because as a
+                developer, I'm just fighting getting basic things to work
+                consistently
+              </li>
+              <li>
+                A frustrated engineer will create a product that frustrates
+                users
+              </li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h1>How do you fix this?</h1>
+          <h2>Full rewrite!</h2>
+          <ul>
+            <li>
+              You can't just stop shipping updates and bug fixes for the legacy
+              product
+            </li>
+            <li>
+              Need to somehow split your dev team into working on the existing
+              product and the new product
+            </li>
+            <li>
+              Your competitors are adding features while you're fixing tech debt
+            </li>
+          </ul>
+          <aside class="class">
+            <ul>
+              <li>The most common solution is... a full rewrite!</li>
+              <li>A full rewrite often carries significant issues however</li>
+              <li>Quickly go over some more pitfalls of full rewrites</li>
+            </ul>
+          </aside>
+        </section>
+        <section data-auto-animate>
+          <img src="/images/legacytorewrite.svg" />
+          <aside class="notes">
+            <ul>
+              <li>
+                We believe that we can stop working on the old app and begin
+                working on the new one
+              </li>
+            </ul>
+          </aside>
+        </section>
+        <section data-auto-animate>
+          <img src="/images/legacytorewrite_bugfixes.svg" />
+          <aside class="notes">
+            <ul>
+              <li>
+                In reality, we have to adopt a parallel development strategy
+              </li>
+              <li>A production system can almost never sit static for long!</li>
+              <li>
+                There will be bugs that pop up in the legacy app that need to be
+                fixed
+              </li>
+            </ul>
+          </aside>
+        </section>
+        <section data-auto-animate>
+          <img src="/images/legacytorewrite_features.svg" />
+          <aside class="notes">
+            <ul>
+              <li>
+                We will inevitably have high priority features that need to be
+                delivered NOW!
+              </li>
+              <li>
+                We have to make the update in both places, which costs double in
+                all facets: pm, testing, build, deployment
+              </li>
+            </ul>
+          </aside>
+        </section>
+        <section data-auto-animate>
+          <img src="/images/schism.svg" />
+          <aside class="notes">
+            <li>Who will work on the new app vs old?</li>
+            <li>
+              Often times, the senior engineers and architects build the new
+              version while the juniors are left to maintain the old.
+            </li>
+            <li>Make sense to some degree. Forging new paths is tricky work</li>
+            <li>
+              Leads to context switching for the senior engineers to help out
+              with questions or prod issues on the legacy system
+            </li>
+            <li>
+              Leads to alienation for the junior engineers. Who wants to be
+              stuck maintaining a legacy app? Is there anything more fun or
+              exciting as an engineer than a greenfield project?
+            </li>
+          </aside>
+        </section>
+        <section data-auto-animate>
+          <img src="/images/newteam.svg" />
+          <aside class="notes">
+            <li>Let's hire a new team</li>
+            <li>
+              Consultants or new hires are missing key domain knowledge and
+              experience
+            </li>
+            <li>
+              More alienation for experienced engineers working on the old
+              system
+            </li>
+          </aside>
+        </section>
+        <section data-auto-animate>
+          <img src="/images/featureparity1.svg" />
+          <aside class="notes">
+            <ul>
+              <li>
+                The goal of feature parity becomes a moving goal post for a
+                couple reasons:
+              </li>
+              <li>
+                Unkonwn unknowns
+                <ul>
+                  <li>
+                    We try to estimate how long the rewrite will take, but we
+                    are certainly wrong
+                  </li>
+                  <li>
+                    These unkonw unknowns are like landmines lurking out there
+                    waiting to blow up the rewrite effort
+                  </li>
+                  <li>
+                    Makes the goal of feature parity seem like a moving goal
+                    post and always "just out of reach"
+                  </li>
+                  <li>
+                    Lowers morale on the team, and causes mistrust in the
+                    business. People start talking about this rewrite that has
+                    been promised for a long time when all our problems will be
+                    solved. It never comes
+                  </li>
+                </ul>
+              </li>
+              <li>
+                The Second System Effect
+                <ul>
+                  <li>From the Mythical Man-Month by Fred Brooks</li>
+                  <li>
+                    The tendency for the rewrite to become an over-engineered
+                    mess due to inflated expectations and overconfidence
+                  </li>
+                  <li>
+                    We try to get rid of all tech debt in one shot with the
+                    rewrite
+                  </li>
+                  <li>
+                    We tend to let scope creep take over and continue to rewrite
+                    other parts of the system that weren't initially on the
+                    table
+                  </li>
+                  <li>
+                    "Why not break our back end into microservices while we're
+                    at it!"
+                  </li>
+                  <li>Engineers aren't the only ones guilty of this:</li>
+                  <li>
+                    Let's add this one feature customers have been dying for
+                    while we're at it!
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </aside>
+        </section>
+        <section data-auto-animate>
+          <img src="/images/bigbangrelease.svg" />
+          <aside class="notes">
+            <ul>
+              <li>
+                At some point, if you're lucky, you finally reach parity and can
+                release. Most rewrites won't even make it that far
+              </li>
+              <li>Often, you have to "cutover" to the new app all at once</li>
+              <li>
+                Rewrites aren't generally condusive to the MVP / Agile
+                methodology of getting early feedback from users
+              </li>
+              <li>
+                Puts a lot of pressure on the team since they don't have
+                anything tangible until it's 100% ready
+              </li>
+              <li>
+                inevitably leads to more distrust and contempt from the business
+                as they try to wait patiently
+              </li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h1>Pitfalls of Rewrites</h1>
+          <ul>
+            <li>Double the Work, Double the Cost</li>
+            <li>Lower Team Morale</li>
+            <li>Unknown Unknowns</li>
+            <li>The Second System Effect</li>
+            <li>"Big Bang" Release</li>
+          </ul>
+          <p>
+            <a
+              href="https://www.bennorthrop.com/rewrite-or-refactor-book/chapter-2-the-risks-of-rewrites.php"
+              >The Risk Of Rewrites</a
+            > - Ben Northrop
+          </p>
+          <aside class="notes">
+            <ul>
+              <li>Parallel development is inevitable</li>
+              <li>Someone has to be left behind working on the old system</li>
+              <li>There's always unknowns that pop up to derail the effort</li>
+              <li>
+                The rewrite is actually more than likely to have it's own worts
+                and be overengineered
+              </li>
+              <li>
+                Big bang release is risky, and will probably dissapoint users
+                who haven't had a chance to give feedback
+              </li>
+            </ul>
+
+            <h2>
+              Before I go on, does this resonate with anyone? This is your
+              chance to tell your war stories
+            </h2>
           </aside>
         </section>
       </div>
