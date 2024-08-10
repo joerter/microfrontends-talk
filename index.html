@@ -20,22 +20,43 @@
     <div class="reveal">
       <div class="slides">
         <section>
-          <h3>From Legacy to Modern</h3>
-          <h5>
+          <h1 class="r-fit-text">From Legacy to Modern</h1>
+          <h3 class="r-fit-text">
             Our Experience Migrating a Complex Application with Microfrontends
-          </h5>
-          <p>John Oerter</p>
-          <p><a href="https://x.com/joerter10">@joerter10</a></p>
-          <p>Lead Software Engineer at Dina</p>
-          <p>
+          </h3>
+          <p style="font-size: 2rem">
+            John Oerter
+            <br />
+            <a href="https://x.com/joerter10">@joerter10</a> |
+            <a href="https://johnoerter.me">johnoerter.me</a>
+            <br />
+            Lead Software Engineer at Dina
+            <br />
             <a href="https://microfrontends.johnoerter.me"
               >microfrontends.johnoerter.me</a
             >
           </p>
+          <aside class="notes">
+            <ul>
+              <li>Introduce myself</li>
+              <li>
+                This is essentially a case study in how we used microfrontends
+                to migrate away from a legacy app in AngularJS to React
+              </li>
+              <li>
+                Even though the specific tech may not be fully applicable to you
+                or your company, my hope is that something will be inspiring or
+                help you solve your own problems
+              </li>
+              <li>
+                Feel free to ask questions during the talk, I want this to be
+                interactive
+              </li>
+            </ul>
+          </aside>
         </section>
-        <section>
-          <h1>September 14, 2016</h1>
-          <img src="/images/angular-logo.svg" />
+        <section data-auto-animate>
+          <h1 class="r-fit-text">September 14, 2016</h1>
           <aside class="notes">
             <ul>
               <li>This is like when a movie opens with a flashback</li>
@@ -50,10 +71,34 @@
             </ul>
           </aside>
         </section>
-        <section>
-          <img src="/images/angularjs-logo.png" />
+        <section data-auto-animate>
+          <h1 class="r-fit-text">September 14, 2016</h1>
+          <img src="/images/angular-logo.svg" />
+          <aside class="notes">
+            <ul>
+              <li>
+                Angular was announced a couple years prior, but this is when it
+                was first available
+              </li>
+              <li>
+                A very confusing time. I still don't know why they chose the
+                name Angular and not something completely different
+              </li>
+            </ul>
+          </aside>
         </section>
-        <section>
+        <section data-auto-animate>
+          <img src="/images/angularjs-logo.png" />
+          <aside class="notes">
+            <ul>
+              <li>
+                What did that mean for all the beautiful AngularJS apps out
+                there?
+              </li>
+            </ul>
+          </aside>
+        </section>
+        <section data-auto-animate>
           <img src="/images/angularjs-logo.png" />
           <div
             style="
@@ -102,9 +147,14 @@
           </aside>
         </section>
         <section>
-          <h1>Migrating off of a legacy technology is hard.</h1>
+          <h1 class="r-fit-text">Migrating off legacy technology is hard.</h1>
           <aside class="notes">
             <ul>
+              <li>
+                Doesn't really matter where in your stack it is, and for what
+                reasons, whenever a tech is deeply embedded in your product,
+                migrating is extremely extremely difficult
+              </li>
               <li>
                 This talk is specifically about a success story in migrating
                 from AngularJS to React using microfrontends
@@ -114,11 +164,15 @@
                 you can glean some inspiration and ideas from this talk to apply
                 to your own work
               </li>
+              <li>
+                Raise your hand if you've been part of a large migration like
+                this
+              </li>
             </ul>
           </aside>
         </section>
         <section>
-          <h1>The Problem</h1>
+          <h3>The Problem</h3>
           <ul>
             <li>No new features, bug fixes, or security updates</li>
             <li>Skill stagnation, missing out on career growth, frustration</li>
@@ -141,9 +195,17 @@
           </aside>
         </section>
         <section>
-          <h1>UX is downstream of DX</h1>
+          <h1 class="r-fit-text">UX is downstream of DX</h1>
           <aside class="notes">
             <ul>
+              <li>
+                This is something I've believed for a long time and why DX is so
+                important to me
+              </li>
+              <li>
+                We as developers are craftsman, and if our tools are old, dull,
+                and rusty - how can we create beautiful products?
+              </li>
               <li>
                 What I mean by this is, if your development process sucks, the
                 quality of your product will suffer
@@ -163,22 +225,17 @@
           </aside>
         </section>
         <section>
-          <h1>How do you fix this?</h1>
-          <h2>Full rewrite!</h2>
+          <h1 class="r-fit-text fragment">How do you fix this?</h1>
+          <h2 class="fragment fade-in">Full rewrite!</h2>
           <ul>
-            <li>
-              You can't just stop shipping updates and bug fixes for the legacy
-              product
+            <li class="fragment fade-in">
+              Stopping work on the legacy product isn't realistic
             </li>
-            <li>
-              Need to somehow split your dev team into working on the existing
-              product and the new product
-            </li>
-            <li>
-              Your competitors are adding features while you're fixing tech debt
-            </li>
+            <li class="fragment fade-in">Who's going to build it?</li>
+            <li class="fragment fade-in">The rewrite isn't always better</li>
+            <li class="fragment fade-in">Lack of feedback</li>
           </ul>
-          <aside class="class">
+          <aside class="notes">
             <ul>
               <li>The most common solution is... a full rewrite!</li>
               <li>A full rewrite often carries significant issues however</li>
@@ -270,7 +327,7 @@
                 couple reasons:
               </li>
               <li>
-                Unkonwn unknowns
+                Unknown unknowns
                 <ul>
                   <li>
                     We try to estimate how long the rewrite will take, but we
@@ -320,6 +377,16 @@
                   </li>
                 </ul>
               </li>
+              <li>
+                Overcorrection
+                <ul>
+                  <li>
+                    Since we got burned by the fast moving front-end JS world,
+                    let's build on a solid, old school backend framework like
+                    .NET, Rails, etc.
+                  </li>
+                </ul>
+              </li>
             </ul>
           </aside>
         </section>
@@ -348,7 +415,7 @@
           </aside>
         </section>
         <section>
-          <h1>Pitfalls of Rewrites</h1>
+          <h1 class="r-fit-text">Pitfalls of Rewrites</h1>
           <ul>
             <li>Double the Work, Double the Cost</li>
             <li>Lower Team Morale</li>
@@ -360,7 +427,8 @@
             <a
               href="https://www.bennorthrop.com/rewrite-or-refactor-book/chapter-2-the-risks-of-rewrites.php"
               >The Risk Of Rewrites</a
-            > - Ben Northrop
+            >
+            - Ben Northrop
           </p>
           <aside class="notes">
             <ul>
