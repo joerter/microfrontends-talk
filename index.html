@@ -423,12 +423,20 @@
             <li>The Second System Effect</li>
             <li>"Big Bang" Release</li>
           </ul>
-          <p>
+          <p style="font-size: 1rem">
+            <strong>Further Reading</strong>
+            <br />
             <a
               href="https://www.bennorthrop.com/rewrite-or-refactor-book/chapter-2-the-risks-of-rewrites.php"
               >The Risk Of Rewrites</a
             >
             - Ben Northrop
+            <br />
+            <a
+              href="https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/"
+              >Things You Should Never Do</a
+            >
+            - Joel Spolsky
           </p>
           <aside class="notes">
             <ul>
@@ -451,6 +459,119 @@
             </h2>
           </aside>
         </section>
+        <section data-auto-animate>
+          <h1 class="r-fit-text">Microfrontends</h1>
+          <q
+            >An architectural style where independently deliverable frontend
+            applications are composed into a greater whole</q
+          >
+          -
+          <a href="https://martinfowler.com/articles/micro-frontends.html"
+            >Martin Fowler and Thoughtworks</a
+          >
+          <aside class="notes">
+            <ul>
+              <li>
+                We chose to solve this problem using microfrontends instead
+              </li>
+              <li>
+                Arrived on Technology Radar in 2016 and quickly moved into the
+                "Adopt" category, meaning it's a proven approach
+              </li>
+              <li>What does "composed into a greater whole" mean exactly?</li>
+              <li>
+                For us, it meant we needed to make these separate frontends
+                appear to be part of the same web application to the user
+              </li>
+              <li>They should be served on the same domain</li>
+            </ul>
+          </aside>
+        </section>
+        <section data-auto-animate>
+          <h1 class="r-fit-text">Microfrontends</h1>
+          <ul>
+            <li class="fragment fade-in">
+              smaller, more cohesive and maintainable codebases
+            </li>
+            <li class="fragment fade-in">
+              more scalable organizations with decoupled, autonomous teams
+            </li>
+            <li class="fragment fade-in">
+              <strong>
+                the ability to upgrade, update, or even rewrite parts of the
+                frontend in a more incremental fashion than was previously
+                possible
+              </strong>
+            </li>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li>Benefits are very similar to those of microservices</li>
+              <li>
+                smaller codebases:
+                <ul>
+                  <li>
+                    easier to draw thicker lines around bounded contexts of the
+                    application. For example, sharing domain models between
+                    bounded contexts is harder and coupling is less likely to
+                    happen. The pit of success is bigger
+                  </li>
+                </ul>
+              </li>
+              <li>
+                scalable organizations
+                <ul>
+                  <li>
+                    ability for autonomous teams to own a domain from end to end
+                  </li>
+                  <li>
+                    Key point! We can organize teams around domains instead of
+                    technical capability!
+                  </li>
+                </ul>
+              </li>
+              <li>
+                rewrite
+                <ul>
+                  <li>
+                    unlocks the strangler fig pattern to slowly replacing pieces
+                    of the legacy application
+                  </li>
+                  <li>
+                    We can release these smaller pieces to production as they
+                    are ready, and get immediate feedback
+                  </li>
+                  <li>
+                    Most, if not all of the rewrite pitfalls are immediately
+                    mitigated!
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </aside>
+        </section>
+        <section data-auto-animate>
+          <img src="/images/monolith.svg" alt="" />
+          <aside class="notes">
+            <ul>
+              <li>
+                There are an infinite number of ways to implement
+                microfrontends. I'm going to show you how we did it
+              </li>
+            </ul>
+          </aside>
+        </section>
+	<section data-auto-animate>
+          <img src="/images/microsites.svg" alt="" />
+          <aside class="notes">
+            <ul>
+              <li>
+                There are an infinite number of ways to implement
+                microfrontends. I'm going to show you how we did it
+              </li>
+            </ul>
+          </aside>
+	</section>
       </div>
     </div>
 
