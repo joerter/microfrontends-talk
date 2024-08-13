@@ -143,13 +143,6 @@
                 enjoyed it
               </li>
               <li>Anyone still using AngularJS today? Still supporting?</li>
-            </ul>
-          </aside>
-        </section>
-        <section>
-          <h1 class="r-fit-text">Migrating off legacy technology is hard.</h1>
-          <aside class="notes">
-            <ul>
               <li>
                 Doesn't really matter where in your stack it is, and for what
                 reasons, whenever a tech is deeply embedded in your product,
@@ -171,7 +164,10 @@
             </ul>
           </aside>
         </section>
-        <section>
+        <section data-visibility="hidden">
+          <h1 class="r-fit-text">Migrating off legacy technology is hard.</h1>
+        </section>
+        <section data-visibility="hidden">
           <h3>The Problem</h3>
           <ul>
             <li>No new features, bug fixes, or security updates</li>
@@ -195,7 +191,7 @@
           </aside>
         </section>
         <section>
-          <h1 class="r-fit-text">UX is downstream of DX</h1>
+          <img src="/images/uxdownstreamdx.svg" alt="" />
           <aside class="notes">
             <ul>
               <li>
@@ -227,14 +223,6 @@
         <section>
           <h1 class="r-fit-text fragment">How do you fix this?</h1>
           <h2 class="fragment fade-in">Full rewrite!</h2>
-          <ul>
-            <li class="fragment fade-in">
-              Stopping work on the legacy product isn't realistic
-            </li>
-            <li class="fragment fade-in">Who's going to build it?</li>
-            <li class="fragment fade-in">The rewrite isn't always better</li>
-            <li class="fragment fade-in">Lack of feedback</li>
-          </ul>
           <aside class="notes">
             <ul>
               <li>The most common solution is... a full rewrite!</li>
@@ -461,14 +449,16 @@
         </section>
         <section data-auto-animate>
           <h1 class="r-fit-text">Microfrontends</h1>
-          <q
-            >An architectural style where independently deliverable frontend
-            applications are composed into a greater whole</q
-          >
-          -
-          <a href="https://martinfowler.com/articles/micro-frontends.html"
-            >Martin Fowler and Thoughtworks</a
-          >
+          <div>
+            <q
+              >An architectural style where independently deliverable frontend
+              applications are composed into a greater whole</q
+            >
+            -
+            <a href="https://martinfowler.com/articles/micro-frontends.html"
+              >Martin Fowler and Thoughtworks</a
+            >
+          </div>
           <aside class="notes">
             <ul>
               <li>
@@ -476,7 +466,8 @@
               </li>
               <li>
                 Arrived on Technology Radar in 2016 and quickly moved into the
-                "Adopt" category, meaning it's a proven approach
+                "Adopt" category, meaning it's a proven approach. Hold, Assess,
+                Trial, Adopt
               </li>
               <li>What does "composed into a greater whole" mean exactly?</li>
               <li>
@@ -489,21 +480,7 @@
         </section>
         <section data-auto-animate>
           <h1 class="r-fit-text">Microfrontends</h1>
-          <ul>
-            <li class="fragment fade-in">
-              smaller, more cohesive and maintainable codebases
-            </li>
-            <li class="fragment fade-in">
-              more scalable organizations with decoupled, autonomous teams
-            </li>
-            <li class="fragment fade-in">
-              <strong>
-                the ability to upgrade, update, or even rewrite parts of the
-                frontend in a more incremental fashion than was previously
-                possible
-              </strong>
-            </li>
-          </ul>
+          <img src="/images/microfrontendscomposition.png" alt="" />
           <aside class="notes">
             <ul>
               <li>Benefits are very similar to those of microservices</li>
@@ -547,6 +524,7 @@
                   </li>
                 </ul>
               </li>
+              <li>This is the way microfrontends are commonly composed</li>
             </ul>
           </aside>
         </section>
@@ -562,6 +540,9 @@
           </aside>
         </section>
 	<section data-auto-animate>
+          <img src="/images/login-pullout.svg" alt="" />
+	</section>
+        <section data-auto-animate>
           <img src="/images/microsites.svg" alt="" />
           <aside class="notes">
             <ul>
@@ -571,7 +552,16 @@
               </li>
             </ul>
           </aside>
-	</section>
+        </section>
+        <section>
+          <img src="/images/cloudfront.svg" alt="" />
+        </section>
+        <section data-auto-animate>
+          <img src="/images/inbox-example.svg" alt="" />
+        </section>
+        <section data-auto-animate>
+          <img src="/images/inbox-example2.svg" alt="" />
+        </section>
       </div>
     </div>
 

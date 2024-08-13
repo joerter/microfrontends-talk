@@ -1,0 +1,3 @@
+- Give an example of a microfrontends using Spotify
+- Tie together the advantages of microfrontedn and rewrite
+- Gartner reports
