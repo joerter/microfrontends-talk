@@ -539,9 +539,9 @@
             </ul>
           </aside>
         </section>
-	<section data-auto-animate>
+        <section data-auto-animate>
           <img src="/images/login-pullout.svg" alt="" />
-	</section>
+        </section>
         <section data-auto-animate>
           <img src="/images/microsites.svg" alt="" />
           <aside class="notes">
@@ -561,6 +561,73 @@
         </section>
         <section data-auto-animate>
           <img src="/images/inbox-example2.svg" alt="" />
+        </section>
+        <section>
+          <pre>
+		<code class="language-bash" data-trim data-noescape>
+app.dinacare.com/
+├── apps/
+│   ├── auth/
+│   ├── inbox/
+│   └── reporting/
+├── libs/
+│   ├── auth/
+│   ├── inbox/
+│   ├── reporting/
+│   └── shared/
+└── package.json
+		</code>
+		</pre>
+        </section>
+        <section>
+          <pre>
+		<code class="language-bash" data-trim data-noescape data-line-numbers="2-5|6-10">
+app.dinacare.com/
+├── apps/
+│   ├── auth/
+│   ├── inbox/
+│   └── reporting/
+├── libs/
+│   ├── auth/
+│   ├── inbox/
+│   ├── reporting/
+│   └── shared/
+└── package.json
+		</code>
+		</pre>
+        </section>
+        <section>
+          <pre>
+		<code data-trim data-noescape class="language-bash" data-line-numbers="3-6|11-15">
+app.dinacare.com/
+├── apps/
+│   ├── auth/
+│   │   ├── main.tsx
+│   │   ├── router.tsx
+│   │   └── index.html
+│   ├── inbox/
+│   └── reporting/
+├── libs/
+│   ├── auth/
+│   ├── inbox/
+│   │   ├── feature/
+│   │   │   └── new-referral/
+│   │   └── shared/
+│   │       └── components/
+│   ├── reporting/
+│   └── shared/
+└── package.json
+		</code>
+		</pre>
+        </section>
+        <section>
+          <img src="/images/nx-graph.svg" alt="" />
+        </section>
+        <section>
+          <img src="/images/johnbug.svg" alt="" />
+        </section>
+        <section>
+          <img src="/images/local-dev.svg" alt="" />
         </section>
       </div>
     </div>
