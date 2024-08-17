@@ -182,7 +182,7 @@
               <li>
                 Why is using a legacy technology so detrimental to your product?
               </li>
-	      <li>UX is downstream of DX</li>
+              <li>UX is downstream of DX</li>
               <li>
                 This is something I've believed for a long time and why DX is so
                 important to me
@@ -539,17 +539,74 @@
                 There are an infinite number of ways to implement
                 microfrontends. I'm going to show you how we did it
               </li>
+              <li>
+                As we pull more features out of Classic and into Inbox, we can
+                start segmenting our users and sending some to the new version
+                in order to get feedback
+              </li>
+              <li>
+                This is how we can mitigate the "Big Bang" release of rewrites
+              </li>
+              <li>
+                TRANSITION: The next few slides are more in detail about how we
+                accomplished this technically
+              </li>
             </ul>
           </aside>
         </section>
         <section>
           <img src="/images/cloudfront.svg" alt="" />
+          <aside class="notes">
+            <ul>
+              <li>
+                In a nutshell, we're able to use cloudfront to route to our
+                separate apps in their own S3 buckets
+              </li>
+              <li>
+                Once the front end app is pulled down, React Router takes over
+                so that nested links work
+              </li>
+              <li>
+                TRANSITION: This is how we compose our apps together, and it
+                works well over the iframe approach. Now, how do we share common
+                code with this approach?
+              </li>
+            </ul>
+          </aside>
         </section>
         <section data-auto-animate>
           <img src="/images/inbox-example.svg" alt="" />
+          <aside class="notes">
+            <ul>
+              <li>This is a simplified screenshot of our app</li>
+              <li>Pretty standard layout with navigation up top and content</li>
+            </ul>
+          </aside>
         </section>
         <section data-auto-animate>
           <img src="/images/inbox-example2.svg" alt="" />
+          <aside class="notes">
+            <ul>
+              <li>
+                The "app shell" are shared components that are imported and
+                independently packaged into each microfrontend
+              </li>
+              <li>
+                There's an obvious tradeoff to this approach vs iframes or
+                monolith where if we change any of these shared components, we
+                need to redeploy all of our apps.
+              </li>
+              <li>
+                This can be mitigated by only sharing what is absolutely
+                necessary to be shared
+              </li>
+              <li>
+                TRANSITION: Next, I want to talk about how we accomplish this at
+                the repository and code level. We chose to adopt a monorepo
+                strategy.
+              </li>
+            </ul>
+          </aside>
         </section>
         <section>
           <pre>
@@ -567,6 +624,14 @@ app.dinacare.com/
 └── package.json
 		</code>
 		</pre>
+          <aside class="notes">
+            <ul>
+              <li>Example of the monorepo for our microfrontends</li>
+              <li>
+                This is a typical Nx monorepo setup with apps and libs folders
+              </li>
+            </ul>
+          </aside>
         </section>
         <section>
           <pre>
@@ -584,6 +649,14 @@ app.dinacare.com/
 └── package.json
 		</code>
 		</pre>
+          <aside class="notes">
+            <ul>
+              <li>
+                Notice the apps/ directory with subdirectories for each app
+              </li>
+              <li>libs dir is the same except for the shared/ folder</li>
+            </ul>
+          </aside>
         </section>
         <section>
           <pre>
@@ -608,12 +681,62 @@ app.dinacare.com/
 └── package.json
 		</code>
 		</pre>
+          <aside class="notes">
+            <ul>
+              <li>
+                each app and sub directory under an app is an independent module
+              </li>
+              <li>
+                We don't publish these modules to a private NPM registry, rather
+                they are built by our bundler
+              </li>
+            </ul>
+          </aside>
         </section>
         <section>
           <img src="/images/nx-graph.svg" alt="" />
+          <aside class="notes">
+            <ul>
+              <li>First, does anyone have experience with Nx?</li>
+              <li>
+                Nx has many great features, but the one I want to focus on here
+                is Task Pipelines
+              </li>
+              <li>
+                This diagram shows our Inbox app and how it depends on other
+                modules in our repo
+              </li>
+              <li>
+                Without Nx, if I wanted to build, serve, or test the Inbox app,
+                I would first need to manually build the modules it depends on
+              </li>
+              <li>
+                Nx can do this for me automatically, AND it can cache modules
+                that haven't changed
+              </li>
+              <li>
+                This means I can be working on a specific feature in the Inbox
+                app and enjoy quick build times and feedback loops
+              </li>
+              <li>
+                Additionally, I can ask Nx to only build or test the apps that
+                were affected with Nx affected
+              </li>
+              <li>
+                This all mitigates the long build times that's a common downside
+                of monorepos
+              </li>
+	      <li>Nx is definitely a key part of our stack</li>
+            </ul>
+          </aside>
         </section>
         <section>
           <img src="/images/johnbug.svg" alt="" />
+	  <aside class="notes">
+		  <ul>
+		  	<li></li>
+		  </ul>
+	  </aside>
         </section>
         <section>
           <img src="/images/local-dev.svg" alt="" />
