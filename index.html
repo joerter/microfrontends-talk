@@ -252,7 +252,7 @@
             </ul>
           </aside>
         </section>
-        <section data-auto-animate>
+        <section data-auto-animate data-visibility="hidden">
           <img src="/images/legacytorewrite_bugfixes.svg" />
           <aside class="notes">
             <ul>
@@ -302,7 +302,7 @@
             </li>
           </aside>
         </section>
-        <section data-auto-animate>
+        <section data-auto-animate data-visibility="hidden">
           <img src="/images/newteam.svg" />
           <aside class="notes">
             <li>Let's hire a new team</li>
@@ -542,15 +542,14 @@
           <img src="/images/monolith.svg" alt="" />
           <aside class="notes">
             <ul>
+              <li>How do we break this up? How do we compose?</li>
+              <li>We needed all apps to be available on the same domain</li>
               <li>
-                There are an infinite number of ways to implement
-                microfrontends. I'm going to show you how we did it
+                Iframe would be difficult for us since we wanted to make a
+                minimal amount of changes to our classic app
               </li>
             </ul>
           </aside>
-        </section>
-        <section data-auto-animate>
-          <img src="/images/login-pullout.svg" alt="" />
         </section>
         <section data-auto-animate>
           <img src="/images/microsites.svg" alt="" />
@@ -593,6 +592,14 @@
                 code with this approach?
               </li>
             </ul>
+          </aside>
+        </section>
+        <section data-auto-animate>
+          <img src="/images/login-pullout.svg" alt="" />
+        </section>
+        <section data-auto-animate>
+          <img src="/images/microsites.svg" alt="" />
+          <aside class="notes">
           </aside>
         </section>
         <section data-auto-animate>
@@ -844,7 +851,10 @@ app.dinacare.com/
         <section>
           <h1 class="r-fit-text">What's Next?</h1>
         </section>
-        <section data-background-image="/images/thans.svg" data-transition="zoom">
+        <section
+          data-background-image="/images/thans.svg"
+          data-transition="zoom"
+        >
           <h1 class="fragment fade-up">THANK YOU!</h1>
         </section>
       </div>
