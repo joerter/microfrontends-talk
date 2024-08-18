@@ -15,6 +15,27 @@
 
     <!-- Theme used for syntax highlighted code -->
     <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+    <style>
+      ul.checks,
+      ul.exes {
+        list-style-type: none;
+        padding-left: 0;
+      }
+      ul.exes {
+        margin-top: 2rem;
+        margin-left: 5rem;
+      }
+      ul.checks li::before {
+        content: "✅"; /* Unicode for check mark */
+        margin-right: 1rem;
+        color: green; /* Optional: changes the color of the check mark */
+      }
+      ul.exes li::before {
+        content: "❌"; /* Unicode for check mark */
+        margin-right: 1rem;
+        color: red; /* Optional: changes the color of the check mark */
+      }
+    </style>
   </head>
   <body>
     <div class="reveal">
@@ -726,26 +747,105 @@ app.dinacare.com/
                 This all mitigates the long build times that's a common downside
                 of monorepos
               </li>
-	      <li>Nx is definitely a key part of our stack</li>
+              <li>Nx is definitely a key part of our stack</li>
             </ul>
           </aside>
         </section>
         <section>
           <img src="/images/johnbug.svg" alt="" />
-	  <aside class="notes">
-		  <ul>
-		  	<li></li>
-		  </ul>
-	  </aside>
+          <aside class="notes">
+            <ul>
+              <li>
+                Now we're going to put this all together somewhat and walk
+                through what it's like to work in this as a dev
+              </li>
+              <li>
+                Let's say there's a bug in the Inbox app and I start working on
+                it
+              </li>
+            </ul>
+          </aside>
         </section>
         <section>
           <img src="/images/local-dev.svg" alt="" />
+          <aside class="notes">
+            <ul>
+              <li>
+                The first thing you do as a dev is reproduce the bug locally,
+                right?
+              </li>
+              <li>
+                Luckily, we have a local dev setup using NGINX that emulates our
+                microfrontend composition with in deployed envs with cloudfront
+              </li>
+              <li>
+                With this, I can easily spin up the inbox app and work on fixing
+                the bug
+              </li>
+            </ul>
+          </aside>
         </section>
         <section>
           <img src="/images/pr-changeset.svg" alt="" />
+          <aside class="notes">
+            <ul>
+              <li>
+                Once I've done that, it's time for a PR. I like descriptive
+                names lol
+              </li>
+              <li>
+                Changeset is a tool that we use to generate semantic versions of
+                our apps
+              </li>
+              <li>
+                I include a changeset in my PR that says this is a Patch release
+                of the inbox app
+              </li>
+            </ul>
+          </aside>
         </section>
         <section>
           <img src="/images/build-release.svg" alt="" />
+          <aside class="notes">
+            <ul>
+              <li>
+                Once I merge my PR, we have a github action that automatically
+                pushes a new tag
+              </li>
+              <li>
+                That triggers another action that builds the inbox app and
+                pushes the built artifact
+              </li>
+              <li>Now, we can deploy that artifact to any env</li>
+              <li>Key point is that we only build our apps once</li>
+              <li>
+                This is common for backend apps, but not so common for front end
+                apps
+              </li>
+              <li>We inject env specific configuration during the release</li>
+            </ul>
+          </aside>
+        </section>
+        <section>
+          <h1 class="r-fit-text">Microfrontends with Monorepo</h1>
+          <ul class="checks">
+            <li>Easier code sharing</li>
+            <li>Consistent Tooling</li>
+            <li>Simplified Dependency Management</li>
+          </ul>
+
+          <ul class="exes">
+            <li>Increased build times (mitigated by Nx)</li>
+            <li>Tooling complexity (Nx)</li>
+            <li>Potential for tighter coupling</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1 class="r-fit-text">What's Next?</h1>
+        </section>
+        <section data-background-image="/images/thans.svg" data-transition="zoom">
+          <h1 class="fragment fade-up">THANK YOU!</h1>
         </section>
       </div>
     </div>
