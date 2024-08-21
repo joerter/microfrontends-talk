@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="dist/reset.css" />
     <link rel="stylesheet" href="dist/reveal.css" />
-    <link rel="stylesheet" href="dist/theme/solarized.css" />
+    <link rel="stylesheet" href="dist/theme/white.css" />
 
     <!-- Theme used for syntax highlighted code -->
     <link rel="stylesheet" href="plugin/highlight/monokai.css" />
@@ -34,6 +34,9 @@
         content: "❌"; /* Unicode for check mark */
         margin-right: 1rem;
         color: red; /* Optional: changes the color of the check mark */
+      }
+      .speaker-controls-notes ul{
+        margin: 0;
       }
     </style>
   </head>
@@ -59,21 +62,26 @@
           </p>
           <aside class="notes">
             <ul>
-              <li>Introduce myself</li>
               <li>
-                This is essentially a case study in how we used microfrontends
-                to migrate away from a legacy app in AngularJS to React
+                I'm John Oerter. I used to live here in Omaha. Now in
+                Connecticut
+              </li>
+              <li>Worked for FCSA in Omaha, now I work for Dina</li>
+              <li>
+                We have a platform for coordinating in home care for patients
               </li>
               <li>
-                Even though the specific tech may not be fully applicable to you
-                or your company, my hope is that something will be inspiring or
-                help you solve your own problems
+                This talk is about how we migrated off of AngularJS using
+                microfrontends
               </li>
               <li>
                 Feel free to ask questions during the talk, I want this to be
                 interactive
               </li>
-              <li>Follow along if you'd like</li>
+              <li>
+                Follow along if you'd like. The slides are a little useless
+                without my narration, but they're there
+              </li>
             </ul>
           </aside>
         </section>
@@ -81,14 +89,13 @@
           <h1 class="r-fit-text">September 14, 2016</h1>
           <aside class="notes">
             <ul>
-              <li>This is like when a movie opens with a flashback</li>
               <li>
-                Raise your hand if you were developing software in September
-                2016. Just for my own curiosity
+                Imagine with me this is like a flashback in the first scene of a
+                movie
               </li>
               <li>
-                Does anyone know a significant event that happened on this date?
-                Hint: it's in the front end dev world
+                Something significant in the front-end web dev space happened on
+                this date. Does anyone know what it is?
               </li>
             </ul>
           </aside>
@@ -98,15 +105,16 @@
           <img src="/images/angular-logo.svg" />
           <aside class="notes">
             <ul>
+              <li>This is when Angular was released</li>
+              <li>Announced a few years prior, but released on this date</li>
               <li>
-                Angular was announced a couple years prior, but this is when it
-                was first available
+                Super confusing. There was already AngularJS, and now Angular, a
+                totally different framework, exists
               </li>
               <li>
-                A very confusing time. I still don't know why they chose the
-                name Angular and not something completely different
+                If you remember, this was the height of JS fatigue. Some of you
+                might always be experiencing JS fatigue
               </li>
-              <li>This was the height of JS fatigue</li>
             </ul>
           </aside>
         </section>
@@ -146,52 +154,19 @@
                 officially supported at the end of 2021
               </li>
               <li>
-                Again for my curiosity, raise your hand if you were supporting
-                or building an AngularJS app during this time.
-              </li>
-              <li>
                 Where I was working at the time I had a sweet setup with
                 Browserify and Gulp to build my AngularJS app and I really
                 enjoyed it
               </li>
-              <li>Migrating off of legacy software is really hard</li>
               <li>
                 TRANSITION: This is where we were at when I joined Dina in 2022.
+                Our flagship app was still on AngularJS
               </li>
               <li>
-                This talk is specifically about a success story in migrating
-                from AngularJS to React using microfrontends
-              </li>
-              <li>
-                However, I hope that even if that isn't your specific situation,
-                you can glean some inspiration and ideas from this talk to apply
-                to your own work
-              </li>
-            </ul>
-          </aside>
-        </section>
-        <section data-visibility="hidden">
-          <h1 class="r-fit-text">Migrating off legacy technology is hard.</h1>
-        </section>
-        <section data-visibility="hidden">
-          <h3>The Problem</h3>
-          <ul>
-            <li>No new features, bug fixes, or security updates</li>
-            <li>Skill stagnation, missing out on career growth, frustration</li>
-          </ul>
-          <aside class="notes">
-            <ul>
-              <li>
-                When I joined Dina in 2022, our flagship app was in AngularJS
-              </li>
-              <li>
-                These problems should be obvious, but we'll go through them
-              </li>
-              <li>Can't take advantage of new browser features</li>
-              <li>Supporting libraries are usually abandoned</li>
-              <li>
-                Again, you can apply this to any technology stack, not just
-                AngularJS and front-end
+                This talk is about how we finally migrated off of AngularJS onto
+                React. The actual React part isn't as crucial. Even if you're
+                dealing with legacy software not on the front-end. I hope this
+                talk is beneficial or inspiring to you in some way.
               </li>
             </ul>
           </aside>
@@ -201,20 +176,23 @@
           <aside class="notes">
             <ul>
               <li>
-                Why is using a legacy technology so detrimental to your product?
+                Before we get too far, we need to establish why migrate off of
+                legacy tech at all?
               </li>
-              <li>UX is downstream of DX</li>
               <li>
-                This is something I've believed for a long time and why DX is so
-                important to me
+                At Dina, we theoretically could've stayed on AngularJS forever
+              </li>
+              <li>
+                Aside from the possible security and business continuity
+                reasons, this is my main motivation
+              </li>
+              <li>Working with legacy tech means having an inferior product</li>
+              <li>
+                The mental model I have for that is: UX is downstream of DX
               </li>
               <li>
                 We as developers are craftsman, and if our tools are old, dull,
                 and rusty - how can we create beautiful products?
-              </li>
-              <li>
-                What I mean by this is, if your development process sucks, the
-                quality of your product will suffer
               </li>
               <li>
                 The frustration, slow build times, hunting around for bugs in
@@ -227,6 +205,10 @@
                 A frustrated engineer will create a product that frustrates
                 users
               </li>
+              <li>
+                On the other hand, a happy engineer with fast feedback loops can
+                create a beautiful product
+              </li>
             </ul>
           </aside>
         </section>
@@ -236,8 +218,11 @@
           <aside class="notes">
             <ul>
               <li>The most common solution is... a full rewrite!</li>
-              <li>A full rewrite often carries significant issues however</li>
-              <li>Quickly go over some more pitfalls of full rewrites</li>
+              <li>
+                Obviously, a full rewrite often carries significant issues
+                however
+              </li>
+              <li>We're going to touch on those quickly</li>
             </ul>
           </aside>
         </section>
@@ -252,28 +237,33 @@
             </ul>
           </aside>
         </section>
-        <section data-auto-animate data-visibility="hidden">
-          <img src="/images/legacytorewrite_bugfixes.svg" />
-          <aside class="notes">
-            <ul>
-              <li>
-                In reality, we have to adopt a parallel development strategy
-              </li>
-              <li>A production system can almost never sit static for long!</li>
-              <li>
-                There will be bugs that pop up in the legacy app that need to be
-                fixed
-              </li>
-            </ul>
-          </aside>
-        </section>
+        <!-- <section data-auto-animate data-visibility="hidden"> -->
+        <!--   <img src="/images/legacytorewrite_bugfixes.svg" /> -->
+        <!--   <aside class="notes"> -->
+        <!--     <ul> -->
+        <!--       <li> -->
+        <!--         In reality, we have to adopt a parallel development strategy -->
+        <!--       </li> -->
+        <!--       <li>A production system can almost never sit static for long!</li> -->
+        <!--       <li> -->
+        <!--         There will be bugs that pop up in the legacy app that need to be -->
+        <!--         fixed -->
+        <!--       </li> -->
+        <!--     </ul> -->
+        <!--   </aside> -->
+        <!-- </section> -->
         <section data-auto-animate>
           <img src="/images/legacytorewrite_features.svg" />
           <aside class="notes">
             <ul>
               <li>
-                We will inevitably have high priority features that need to be
-                delivered NOW!
+                The first thing that gets in the way are bug fixes. You simply
+                can't just leave software in production without maintenance
+              </li>
+              <li>
+                The second obstacle is "high priority features". Whether they
+                come internally or externally, your product can't just stand
+                still while competitors are improving
               </li>
               <li>
                 We have to make the update in both places, which costs double in
@@ -285,7 +275,7 @@
         <section data-auto-animate>
           <img src="/images/schism.svg" />
           <aside class="notes">
-            <li>Who will work on the new app vs old?</li>
+            <li>So, often times we try to separate our teams</li>
             <li>
               Often times, the senior engineers and architects build the new
               version while the juniors are left to maintain the old.
@@ -300,22 +290,26 @@
               stuck maintaining a legacy app? Is there anything more fun or
               exciting as an engineer than a greenfield project?
             </li>
-          </aside>
-        </section>
-        <section data-auto-animate data-visibility="hidden">
-          <img src="/images/newteam.svg" />
-          <aside class="notes">
-            <li>Let's hire a new team</li>
             <li>
-              Consultants or new hires are missing key domain knowledge and
-              experience
-            </li>
-            <li>
-              More alienation for experienced engineers working on the old
-              system
+              Another thing that is often tried is to have a new team build the
+              new product. This fails because they don't have domain knowledge
             </li>
           </aside>
         </section>
+        <!-- <section data-auto-animate data-visibility="hidden"> -->
+        <!--   <img src="/images/newteam.svg" /> -->
+        <!--   <aside class="notes"> -->
+        <!--     <li>Let's hire a new team</li> -->
+        <!--     <li> -->
+        <!--       Consultants or new hires are missing key domain knowledge and -->
+        <!--       experience -->
+        <!--     </li> -->
+        <!--     <li> -->
+        <!--       More alienation for experienced engineers working on the old -->
+        <!--       system -->
+        <!--     </li> -->
+        <!--   </aside> -->
+        <!-- </section> -->
         <section data-auto-animate>
           <img src="/images/featureparity1.svg" />
           <aside class="notes">
@@ -324,33 +318,15 @@
                 The goal of feature parity becomes a moving goal post for a
                 couple reasons:
               </li>
-              <li>
-                Unknown unknowns
-                <ul>
-                  <li>
-                    We try to estimate how long the rewrite will take, but we
-                    are certainly wrong
-                  </li>
-                  <li>
-                    These unkonw unknowns are like landmines lurking out there
-                    waiting to blow up the rewrite effort
-                  </li>
-                  <li>
-                    Makes the goal of feature parity seem like a moving goal
-                    post and always "just out of reach"
-                  </li>
-                  <li>
-                    Lowers morale on the team, and causes mistrust in the
-                    business. People start talking about this rewrite that has
-                    been promised for a long time when all our problems will be
-                    solved. It never comes
-                  </li>
-                </ul>
-              </li>
+              <li>Unknown unknowns</li>
               <li>
                 The Second System Effect
                 <ul>
                   <li>From the Mythical Man-Month by Fred Brooks</li>
+                  <li>
+                    Have you ever worked on a system and said to yourself, I
+                    could write this thing from scratch in a weekend!
+                  </li>
                   <li>
                     The tendency for the rewrite to become an over-engineered
                     mess due to inflated expectations and overconfidence
@@ -372,16 +348,6 @@
                   <li>
                     Let's add this one feature customers have been dying for
                     while we're at it!
-                  </li>
-                </ul>
-              </li>
-              <li>
-                Overcorrection
-                <ul>
-                  <li>
-                    Since we got burned by the fast moving front-end JS world,
-                    let's build on a solid, old school backend framework like
-                    .NET, Rails, etc.
                   </li>
                 </ul>
               </li>
@@ -438,16 +404,9 @@
           </p>
           <aside class="notes">
             <ul>
-              <li>Parallel development is inevitable</li>
-              <li>Someone has to be left behind working on the old system</li>
-              <li>There's always unknowns that pop up to derail the effort</li>
               <li>
-                The rewrite is actually more than likely to have it's own worts
-                and be overengineered
-              </li>
-              <li>
-                Big bang release is risky, and will probably dissapoint users
-                who haven't had a chance to give feedback
+                That's the pitfalls of rewrites. More info here if you're
+                interested
               </li>
             </ul>
 
@@ -471,8 +430,10 @@
           </div>
           <aside class="notes">
             <ul>
+              <li>Obviously, we didn't go the rewrite route</li>
               <li>
-                We chose to solve this problem using microfrontends instead
+                Anyone familiar with Thoughtworks Technology Radar? It's a great
+                resource for discovering new tools and techniques
               </li>
               <li>
                 Arrived on Technology Radar in 2016 and quickly moved into the
@@ -480,11 +441,10 @@
                 Trial, Adopt
               </li>
               <li>What does "composed into a greater whole" mean exactly?</li>
-              <li>
-                For us, it meant we needed to make these separate frontends
-                appear to be part of the same web application to the user
-              </li>
-              <li>They should be served on the same domain</li>
+              <li>Benefits are very similar to those of microservices</li>
+              <li>smaller codebases, thicker lines around domains</li>
+              <li>scalable organizations, vertical teams</li>
+              <li>no rewrite, strangler fig pattern</li>
             </ul>
           </aside>
         </section>
@@ -493,48 +453,20 @@
           <img src="/images/microfrontendscomposition.png" alt="" />
           <aside class="notes">
             <ul>
-              <li>Benefits are very similar to those of microservices</li>
+              <li>Iframes are how microfrontends are commonly composed</li>
               <li>
-                smaller codebases:
-                <ul>
-                  <li>
-                    easier to draw thicker lines around bounded contexts of the
-                    application. For example, sharing domain models between
-                    bounded contexts is harder and coupling is less likely to
-                    happen. The pit of success is bigger
-                  </li>
-                </ul>
+                Don't know about you, but I immediately feel queasy when I hear
+                the word "iframe". They are synonymous with hacky solutions to
+                me
               </li>
               <li>
-                scalable organizations
-                <ul>
-                  <li>
-                    ability for autonomous teams to own a domain from end to end
-                  </li>
-                  <li>
-                    Key point! We can organize teams around domains instead of
-                    technical capability!
-                  </li>
-                </ul>
+                They are a legit web tech, but not something I would want to be
+                the foundation of my frontend
               </li>
               <li>
-                rewrite
-                <ul>
-                  <li>
-                    unlocks the strangler fig pattern to slowly replacing pieces
-                    of the legacy application
-                  </li>
-                  <li>
-                    We can release these smaller pieces to production as they
-                    are ready, and get immediate feedback
-                  </li>
-                  <li>
-                    Most, if not all of the rewrite pitfalls are immediately
-                    mitigated!
-                  </li>
-                </ul>
+                Spotify's Desktop player was built using this technique until
+                recent years
               </li>
-              <li>This is the way microfrontends are commonly composed</li>
             </ul>
           </aside>
         </section>
@@ -542,35 +474,22 @@
           <img src="/images/monolith.svg" alt="" />
           <aside class="notes">
             <ul>
-              <li>How do we break this up? How do we compose?</li>
+              <li>So how did we break up our monolithic AngularJS app?</li>
+              <li>This is a simplified example of the app</li>
               <li>We needed all apps to be available on the same domain</li>
-              <li>
-                Iframe would be difficult for us since we wanted to make a
-                minimal amount of changes to our classic app
-              </li>
             </ul>
           </aside>
         </section>
         <section data-auto-animate>
-          <img src="/images/microsites.svg" alt="" />
+          <img src="/images/microsite-vision.svg" alt="" />
           <aside class="notes">
             <ul>
+              <li>This is the vision we had</li>
               <li>
-                There are an infinite number of ways to implement
-                microfrontends. I'm going to show you how we did it
+                Use the strangler fig pattern to pull apart our app into
+                separate react apps until the classic app melts away
               </li>
-              <li>
-                As we pull more features out of Classic and into Inbox, we can
-                start segmenting our users and sending some to the new version
-                in order to get feedback
-              </li>
-              <li>
-                This is how we can mitigate the "Big Bang" release of rewrites
-              </li>
-              <li>
-                TRANSITION: The next few slides are more in detail about how we
-                accomplished this technically
-              </li>
+              <li>How did we plan to accomplish this technically?</li>
             </ul>
           </aside>
         </section>
@@ -587,19 +506,44 @@
                 so that nested links work
               </li>
               <li>
-                TRANSITION: This is how we compose our apps together, and it
-                works well over the iframe approach. Now, how do we share common
-                code with this approach?
+                TRANSITION: What was the first step we took towards this vision?
               </li>
             </ul>
           </aside>
         </section>
         <section data-auto-animate>
           <img src="/images/login-pullout.svg" alt="" />
+          <aside class="notes">
+            <ul>
+              <li>
+                The first step was to just move login out of AngularJS and
+                direct users to /classic when they logged in
+              </li>
+              <li>Looks simple, but this was a huge accomplishment for us</li>
+              <li>
+                We could put this foundation into production without our users
+                even noticing
+              </li>
+            </ul>
+          </aside>
         </section>
         <section data-auto-animate>
           <img src="/images/microsites.svg" alt="" />
           <aside class="notes">
+            <ul>
+              <li>
+                Now, as we went along pulling more apps out of our monolith, we
+                could control which app users were directed to after login
+              </li>
+              <li>
+                In this way, we could release a new app to a subset of users and
+                get feedback before releasing to more!
+              </li>
+              <li>
+                TRANSITION: The next few slides are more in detail about how we
+                organize our code to make this happen
+              </li>
+            </ul>
           </aside>
         </section>
         <section data-auto-animate>
@@ -654,7 +598,8 @@ app.dinacare.com/
 		</pre>
           <aside class="notes">
             <ul>
-              <li>Example of the monorepo for our microfrontends</li>
+              <li>Example of the monorepo for our microfrontends using Nx</li>
+              <li>Has anyone used Nx?</li>
               <li>
                 This is a typical Nx monorepo setup with apps and libs folders
               </li>
@@ -712,11 +657,8 @@ app.dinacare.com/
           <aside class="notes">
             <ul>
               <li>
-                each app and sub directory under an app is an independent module
-              </li>
-              <li>
-                We don't publish these modules to a private NPM registry, rather
-                they are built by our bundler
+                each app and sub directory under an app is an independent
+                module, almost like an NPM package
               </li>
             </ul>
           </aside>
@@ -725,7 +667,6 @@ app.dinacare.com/
           <img src="/images/nx-graph.svg" alt="" />
           <aside class="notes">
             <ul>
-              <li>First, does anyone have experience with Nx?</li>
               <li>
                 Nx has many great features, but the one I want to focus on here
                 is Task Pipelines
@@ -769,6 +710,10 @@ app.dinacare.com/
               <li>
                 Let's say there's a bug in the Inbox app and I start working on
                 it
+              </li>
+              <li>
+                That bug is hand drawn by the way! If only my elementary school
+                art teacher could see me now
               </li>
             </ul>
           </aside>
